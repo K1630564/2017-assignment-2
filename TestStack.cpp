@@ -29,6 +29,7 @@ int main() {
         
         list<double> popped;
         
+
         while (!s.empty()) {
             popped.push_front(s.pop());
         }
@@ -51,8 +52,9 @@ int main() {
         }
                         
     }
-    
+
     {
+
         double answer = evaluate("3.0 4.0 +");
         if (answer == 7.0) {
             cout << "2) Pass: evaluated '3.0 4.0 +', got 7.0\n";
@@ -61,6 +63,8 @@ int main() {
             ++retval;
         }
     }
+
+
     
     {
         double answer = evaluate("3.0 4.0 - 4.0 +");
@@ -80,7 +84,10 @@ int main() {
             cout << "4) Fail: evaluated '3.0 4.0 - 2.0 *' expecting -2.0, but got " << answer << std::endl;
             ++retval;
         }
+
     }
+
+
         
     return retval;
 }
