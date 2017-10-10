@@ -23,7 +23,8 @@ int main() {
             ++retval;
         }
     }
-    
+
+
     {
         vector<int> arrives{360, 400, 700};
         vector<int> departs{900, 720, 780};
@@ -37,6 +38,6 @@ int main() {
             ++retval;
         }
     }
-    
+
     return retval;
 }
