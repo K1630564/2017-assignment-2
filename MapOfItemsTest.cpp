@@ -15,12 +15,14 @@ int main() {
     
     
     MapOfItems m;
+
     m.addItem(Item(51.75186263338416,-0.3356807902,"48763f26d6b",5));
     m.addItem(Item(51.75166927531987,-0.3455440017,"48763f3b5ef",8));
     m.addItem(Item(51.75293227875113,-0.3363451467,"48763f26e9b",73));
     m.addItem(Item(51.751442536246415,-0.3384676374,"48763f23ff9",117));
     m.addItem(Item(51.750621522352574,-0.3373409116,"48763f21445",142));
-    
+
+
     {
         int basicLength = m.getTour(2.0).size();
         
@@ -48,7 +50,11 @@ int main() {
         }
             
     }
-    
+
+
+
+
+
     {
         int shouldBeOne = m.getTour(0.001).size();
         
@@ -59,8 +65,9 @@ int main() {
             ++retval;
         }
     }
-    
-    
+
+
+
     m.addItem(Item(51.75143744449116,-0.3402358672,"48763f2389f",147));
     m.addItem(Item(51.75251803314034,-0.3370846772,"48763f26bed",165));
     m.addItem(Item(51.75308912523243,-0.3391391525,"48763f243cb",175));
@@ -105,7 +112,10 @@ int main() {
             cout << "3: Fail - a larger tour should have visited 34 locations, but actually visited " << tour.size() << std::endl;
             ++retval;
         }
+
     }
+
+
     
     return retval;
 }
