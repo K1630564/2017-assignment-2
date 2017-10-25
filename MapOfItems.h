@@ -42,10 +42,11 @@ public:
 
         int smallestVisitTime = 50000;
 
-        int count = 0;
-
         int index = 0;
 
+        int tlcount = 0;
+
+        int loopcount = 0;
 
 
 
@@ -60,12 +61,13 @@ public:
 
 
         for(int z = visitedItems.size(); z > 1; z--) {
-
-
-            count = 0;
-
+            smallestVisitTime = 50000;
+            tlcount = 0;
+            loopcount = 0;
             // locate next visit
             for (int i = z-2; i >= 0; i--) {
+
+                loopcount ++;
 
 
                 Item currentItem = visitedItems[visitedItems.size()-1];
@@ -75,20 +77,23 @@ public:
                 int visit = (currentItem.distanceTo(itemToCheck) / speed) + currentTourTime;
 
 
-                if (visit > itemToCheck.getTime() + fifteenMinInSec) { // if visit(I) is too late we cant visit that item
-                    visit = 100000;
+                if (visit > (itemToCheck.getTime() + fifteenMinInSec)) { // if visit(I) is too late we cant visit that item
+
+                    tlcount++;
 
                 }
 
-                if (visit < itemToCheck.getTime()) { // if visit(I) is too early we have to wait
+                else if (visit < itemToCheck.getTime()) { // if visit(I) is too early we have to wait
 
                     visit = itemToCheck.getTime();
 
+
+                } else{
+                    visit = visit;
                 }
 
 
                 if (smallestVisitTime > visit ) { //update next visit (the smallest)
-                    count++;
                     smallestVisitTime = visit;
                     index = i;
                     nextToVisit = itemToCheck;
@@ -100,27 +105,25 @@ public:
 
             }
 
-            if(count == 0){
-               cout << "Too late for all remaining items. Tour has ended." << endl;
+            currentTourTime = smallestVisitTime;
+
+            if(loopcount == tlcount+1 && tlcount!= 0){
                break;
            }
 
-            currentTourTime = smallestVisitTime;
 
-            if (currentTourTime >= (3600)) {
-                cout << "Out of time" << endl;
+
+            else if (currentTourTime >= (3600)) {
                 break;
             }
 
+            else {
 
+                visitedItems.erase(visitedItems.begin() + index);
+                addItem(nextToVisit); // add next item to visit in tour
+                toReturn.insert(toReturn.end(), nextToVisit);
 
-            visitedItems.erase(visitedItems.begin() + index);
-            addItem(nextToVisit); // add next item to visit in tour
-            toReturn.insert(toReturn.end(), nextToVisit);
-
-            smallestVisitTime = 50000;
-
-
+            }
         }
 
 
